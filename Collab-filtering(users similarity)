@@ -1,0 +1,5 @@
+MATCH (u:USER)-[:LIKED]->(:MUSIC)<-[:LIKED]-(other:USER)-[:LIKED]->(rec:MUSIC)
+WHERE u <> other
+  AND NOT (u)-[:LISTENED]->(rec)
+RETURN u.name AS user, rec.titule AS recommendation, COUNT(*) AS score
+ORDER BY score DESC;
