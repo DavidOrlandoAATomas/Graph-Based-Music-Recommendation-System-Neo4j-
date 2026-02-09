@@ -1,0 +1,4 @@
+MATCH (u:USER)-[:LIKED]->(:MUSIC)-[:IN_GENRE]->(g:GENRE)<-[:IN_GENRE]-(rec:MUSIC)
+WHERE NOT (u)-[:LISTENED]->(rec)
+RETURN u.name AS user, rec.titule AS recommendation
+ORDER BY user;
